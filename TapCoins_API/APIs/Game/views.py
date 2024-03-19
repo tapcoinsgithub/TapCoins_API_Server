@@ -8,7 +8,6 @@ from django.utils.timezone import make_aware
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from ...Utilities.helpful_functions import ping
-from ...task import start_time_limit_for_users_streaks
 
 # Move the Block Chain Values to another level
 goerli_rpc_url = 'https://goerli.infura.io/v3/4108e6964fae4225b9f9c53f461e1cd4'
@@ -92,20 +91,13 @@ def send_points(request):
         if user1.win_streak > user1.best_streak:
             print("NEW BEST STREAK")
             user1.best_streak = user1.win_streak
-        # user1.is_active_task_value = not user1.is_active_task_value
         user1.save()
-        # task_data = {
-        #     "token": user1.token.token, 
-        #     "value": user1.is_active_task_value
-        # }
-        # start_time_limit_for_users_streaks.delay(task_data)
         user2.losses += 1
         if user2.win_streak > user2.best_streak:
             user2.best_streak = user2.win_streak
         user2.win_streak = 0
         user2.has_streak = False
         user2.lost_streak = True
-        # user2.is_active_task_value = not user2.is_active_task_value
         user2.save()
         game.fPoints = fPoints
         game.sPoints = sPoints
@@ -120,7 +112,6 @@ def send_points(request):
         user1.win_streak = 0
         user1.has_streak = False
         user1.lost_streak = True
-        # user1.is_active_task_value = not user1.is_active_task_value
         user1.save()
         user2.wins += 1
         user2.win_streak += 1
@@ -129,13 +120,7 @@ def send_points(request):
         if user2.win_streak > user2.best_streak:
             print("NEW BEST STREAK")
             user2.best_streak = user2.win_streak
-        # user2.is_active_task_value = not user2.is_active_task_value
         user2.save()
-        # task_data = {
-        #     "token": user2.token.token, 
-        #     "value": user2.is_active_task_value
-        # }
-        # start_time_limit_for_users_streaks.delay(task_data)
         game.fPoints = fPoints
         game.sPoints = sPoints
         game.winner = user2.username
@@ -247,7 +232,7 @@ def start_user_streak(request):
                 "value": user.is_active_task_value
             }
             print(f"TASK DATA: {task_data}")
-            start_time_limit_for_users_streaks.delay(task_data)
+            # start_time_limit_for_users_streaks.delay(task_data)
             print("CALLED TASK")
             data = {
                 "response": True

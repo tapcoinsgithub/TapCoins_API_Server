@@ -13,7 +13,6 @@ from datetime import datetime, timedelta
 from django.utils.timezone import make_aware
 from django.http import HttpResponse
 import re
-from ...task import start_time_limit_for_users_streaks
 # from google.cloud import recaptchaenterprise_v1
 # Make sure each function is getting the Users token from the request in order to send the users token
 # to the ping function. Reg, Login and Logout will call the ping function at the end only.
@@ -788,19 +787,6 @@ def league_placement(wins, games):
     else:
         print("IS A NOOB PLAYER IN THE LESE STATEMENT")
         return LeagueEnum.NOOB_TAPPER.value
-
-@api_view(['POST'])
-def test_celery(request):
-    token = Token.objects.get(token=request.data['token'])
-    user = User.objects.get(token=token)
-    user.is_active_task_value = not user.is_active_task_value
-    user.save()
-    task_data = {
-        "token": request.data['token'], 
-        "value": user.is_active_task_value
-    }
-    start_time_limit_for_users_streaks.delay(task_data)
-    return HttpResponse("Done")
 
 def ping(active, _token):
     token = Token.objects.get(token=_token)

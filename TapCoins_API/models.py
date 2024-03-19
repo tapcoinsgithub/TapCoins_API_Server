@@ -64,7 +64,6 @@ class User(models.Model):
     user_longitude = models.CharField(verbose_name="users longitude", max_length=config('DOUBLE_CHAR', cast=int), null=True)
     user_time_zone = models.CharField(verbose_name="user time zone", max_length=config('DOUBLE_CHAR', cast=int), null=True)
     is_active = models.BooleanField(verbose_name="is active", default=False, null=True)
-    is_active_task_value = models.BooleanField(verbose_name="is active task value", default=False, null=True)
     last_active_date = models.DateTimeField(verbose_name="last active date", auto_now=True, null=True)
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
     last_login = models.DateTimeField(verbose_name="last login", auto_now=True)

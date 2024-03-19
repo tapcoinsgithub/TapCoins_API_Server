@@ -41,9 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'TapCoins_API',
     'rest_framework',
-    'rest_framework.authtoken',
-    'django_celery_results',
-    'django_celery_beat'
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -149,14 +147,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if os.getcwd() == '/app':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
-
-CELERY_BROKER_URL = config('REDIS_URL')
-# CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'America/New_York'
-
-CELERY_RESULT_BACKEND = config('REDIS_URL') + '/0'
-
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
