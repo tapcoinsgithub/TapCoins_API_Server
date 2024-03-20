@@ -745,6 +745,15 @@ def get_leaderboard_data(request):
         }
         return Response(data)
 
+@api_view(['POST']) 
+def testing_cloud(request):
+    test_var = request.data['test']
+    print(f"TEST VAR HERE: {test_var}")
+    data = {
+        "response": "SUCCESS"
+    }
+    return Response(data)
+
 def league_placement(wins, games):
     print("IN LEAGUE PLACEMENT FUNCTION")
     percentage = (wins / games) * 100
