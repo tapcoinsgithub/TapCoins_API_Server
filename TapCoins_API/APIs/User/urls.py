@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import registration_view, get_user, logout_view, login_view, guest_login, send_username, send_code, change_password, save, save_location, get_leaderboard_data, confirm_password
+from .views import registration_view, get_user, logout_view, login_view, guest_login, send_username, send_code, change_password, save, save_location, get_leaderboard_data, confirm_password, testing_cloud
 
 
 app_name = "user_api"
 urlpatterns = [
+    path('testing', testing_cloud, name="testingCloud")
     path('register', registration_view, name="register"),
     path('info', get_user, name="getUser"),
     path('login', login_view, name="login"),
