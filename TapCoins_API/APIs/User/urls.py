@@ -4,7 +4,7 @@ from .views import registration_view, get_user, logout_view, login_view, guest_l
 
 app_name = "user_api"
 urlpatterns = [
-    path('testing', testing_cloud, name="testingCloud")
+    path('testing', testing_cloud, name="testingCloud"),
     path('register', registration_view, name="register"),
     path('info', get_user, name="getUser"),
     path('login', login_view, name="login"),
