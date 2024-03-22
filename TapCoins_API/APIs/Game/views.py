@@ -8,6 +8,7 @@ from django.utils.timezone import make_aware
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from ...Utilities.helpful_functions import ping
+from ...task import start_time_limit_for_users_streaks
 
 # Move the Block Chain Values to another level
 goerli_rpc_url = 'https://goerli.infura.io/v3/4108e6964fae4225b9f9c53f461e1cd4'
@@ -232,7 +233,7 @@ def start_user_streak(request):
                 "value": user.is_active_task_value
             }
             print(f"TASK DATA: {task_data}")
-            # start_time_limit_for_users_streaks.delay(task_data)
+            start_time_limit_for_users_streaks.delay(task_data)
             print("CALLED TASK")
             data = {
                 "response": True
