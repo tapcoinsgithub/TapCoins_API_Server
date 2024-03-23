@@ -94,7 +94,7 @@ class GameInvite(models.Model):
     sender = models.CharField(verbose_name="sender", max_length=80, null=True)
     reciever = models.CharField(verbose_name="reciever", max_length=80, null=True)
     accepted = models.BooleanField(verbose_name="accepted invite", default=False)
-    cancel = models.BooleanField(verbose_name="cancel invite", default=False)
+    cancel = models.BooleanField(verbose_name="cancels invite", default=False)
     gameId = models.CharField(verbose_name="game id", max_length=16, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

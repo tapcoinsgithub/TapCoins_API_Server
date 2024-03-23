@@ -749,7 +749,7 @@ def get_leaderboard_data(request):
 @api_view(['POST']) 
 def testing_cloud(request):
     test_var = request.data['test']
-    print(f"TEST VAR HERE: {test_var}")
+    print(f"TEST VAR HERE IS: {test_var}")
     data = {
         "response": "SUCCESS"
     }
